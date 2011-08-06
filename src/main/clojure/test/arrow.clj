@@ -7,16 +7,14 @@
 
 ; create arrow
 (defn arr [f]
-	(fn [] f)
-)
+	(fn [] f))
 
 ; sequence arrows
 (defn sq 
   ([a b] 
 		(arr (fn [v] ((b) ((a) v)))))
 	([a b & more] 
-		(reduce sq (sq a b) more))
-)
+		(reduce sq (sq a b) more)))
 
 
    

@@ -5,7 +5,7 @@
     (java.awt.image BufferedImage)
     (javax.swing.border AbstractBorder)))
 
-(set! *warn-on-reflection* true)
+; (set! *warn-on-reflection* true)
 
 (defn set-insets [^Insets insets border-size]
 	(do 
