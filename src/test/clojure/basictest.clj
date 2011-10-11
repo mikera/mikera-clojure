@@ -2,5 +2,5 @@
   (:use clojure.test))
 
 (deftest test-arithmetic
-	(testing "Basic arithmetic"
-	   (is (= 2 (+ 1 1)))))
+  (testing "Basic arithmetic"
+    (is (= 2 (+ 1 1)))))

@@ -99,18 +99,12 @@
   (remove-nils xs))
 
 (defmacro applyn [f n x] 
-    (cond 
-        (<= n 0) x
-        true `(let [f# ~f] (applyn f# ~(dec n) (f# ~x)))    
-        )
-      )
+  (reduce (fn [a _] (list f a)) x (range n)))
 
 (defmacro repeated-apply [f n] 
-    (cond 
-        (<= n 0) identity
-        true `(let [f# ~f] (fn [a#] ((repeated-apply f# ~(dec n)) a#))    
-        )
-      ))
+  (cond 
+    (<= n 0) identity
+    true `(let [f# ~f] (fn [a#] ((repeated-apply f# ~(dec n)) a#)))))
 
 (defn get-element-after [coll value]
   (if (= value (first coll))
