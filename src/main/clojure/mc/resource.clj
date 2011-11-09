@@ -1,4 +1,5 @@
 (ns mc.resource
+  (:require [clojure.java.io])
   (:import [java.awt.image BufferedImage])
   (:import [java.awt Font]))
 
@@ -15,3 +16,6 @@
 
 (defn ^java.awt.Font load-font [resource-name]
   (java.awt.Font/createFont java.awt.Font/TRUETYPE_FONT (.getResourceAsStream (context-class-loader) resource-name)))
+
+(defn resource [str] 
+  (clojure.java.io/resource str))
