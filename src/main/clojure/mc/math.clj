@@ -14,6 +14,8 @@
 	      floats)
       sort)))
 
+(defn gcd [a b] (let [m (mod b a)] (if (pos? m) (gcd m a) a)))
+
 ;; (histogram 100 (fn [] (mikera.util.Rand/u)) 0.1)
 
 ;; testing distribution of the sigmoid of a gaussian

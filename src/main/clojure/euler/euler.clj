@@ -1,7 +1,8 @@
 (ns euler.euler
-  (:use [clojure.contrib.math])
-  (:use [clojure.contrib.macro-utils])
-  (:use [clojure.set]))
+  (:use [clojure.math.numeric-tower])
+  (:use [clojure.tools.macro])
+  (:use [clojure.set])
+  (:use [mc.resource]))
 
 (set! *warn-on-reflection* true)
 
@@ -934,7 +935,7 @@
 (defn leap-year? [y]
   (xor (multiple-of? 4 y) (multiple-of? 100 y) (multiple-of? 400 y)))
   
-(defn month-length [m y]
+(defn month-length [^long m ^long y]
   (case m
     1 31
     2 (if (leap-year? y) 29 28)
@@ -947,8 +948,7 @@
     9 30
     10 31
     11 30
-    12 31
-    ))
+    12 31))
 
 (defn year-length [y]
   (sum 
@@ -1045,7 +1045,7 @@
 (def prob22-input 
   (sort (map
      (fn [#^String s] (.replaceAll s "\"" "")) 
-     (.split #^String (slurp "src/euler/names.txt") ",") )))
+     (.split #^String (slurp (mc.resource/resource "euler/names.txt")) ",") )))
 
 (defn prob22-letter-score [c]
   (+ 1 (int c) (- (int \A))))
@@ -1275,7 +1275,7 @@
 ;==============================================
 ; Problem 31
 ;
-; How many different ways can £2 be made using any number of coins?
+; How many different ways can ï¿½2 be made using any number of coins?
 
 (def coins `(1 2 5 10 20 50 100 200))
 
