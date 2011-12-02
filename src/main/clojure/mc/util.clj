@@ -1,6 +1,7 @@
 (ns mc.util
   (:import mikera.util.Rand)
   (:import [mikera.util Tools])
+  (:import [clojure.lang IDeref])
   (:require [clojure.set])
   (:use [clojure.test]))
 
@@ -224,3 +225,30 @@
   (let [f (fn [x] (* x x))]
     (is (= 3 (valmax inc [2])))
     (is (= 7 (valmax inc [-10 4 6])))))
+
+;; threadlocal macros from amalloy's flatland/useful library
+
+(defn ^{:dont-test "Used in impl of thread-local"}
+  thread-local*
+  "Non-macro version of thread-local - see documentation for same."
+  [init]
+  (let [generator (proxy [ThreadLocal] []
+                    (initialValue [] (init)))]
+    (reify IDeref
+      (deref [this]
+        (.get generator)))))
+
+(defmacro thread-local
+  "Takes a body of expressions, and returns a java.lang.ThreadLocal object.
+   (see http://download.oracle.com/javase/6/docs/api/java/lang/ThreadLocal.html).
+
+   To get the current value of the thread-local binding, you must deref (@) the
+   thread-local object. The body of expressions will be executed once per thread
+   and future derefs will be cached.
+
+   Note that while nothing is preventing you from passing these objects around
+   to other threads (once you deref the thread-local, the resulting object knows
+   nothing about threads), you will of course lose some of the benefit of having
+   thread-local objects."
+  [& body]
+  `(thread-local* (fn [] ~@body)))
