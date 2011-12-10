@@ -228,6 +228,8 @@
 
 ;; threadlocal macros from amalloy's flatland/useful library
 
+
+
 (defn ^{:dont-test "Used in impl of thread-local"}
   thread-local*
   "Non-macro version of thread-local - see documentation for same."
