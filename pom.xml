@@ -53,8 +53,26 @@
 						</goals>
 					</execution>
 				</executions>
+
+				<configuration>
+					<sourceDirectories>
+						<sourceDirectory>src/main/clojure</sourceDirectory>
+					</sourceDirectories>
+					<testSourceDirectories>
+						<testSourceDirectory>src/test/clojure</testSourceDirectory>
+					</testSourceDirectories>
+				</configuration>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/clojure</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 
 		<testResources>
 			<testResource>
