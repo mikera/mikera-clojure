@@ -18,7 +18,7 @@
   (proxy [AbstractBorder] []
     (getBorderInsets [^Component c ^Insets insets]
       (set-insets insets border-size))
-	  (paintBorder [^Component c ^Graphics g ^int x ^int y ^int width ^int height]
+	  (paintBorder [^Component c ^Graphics g x y width height]
 	    (let [bounds (.getBounds c)
 	          w (.width bounds)
 	          h (.height bounds)
@@ -60,8 +60,8 @@
   (let [^Rectangle bounds (.getClipBounds g)
         iw (.getWidth image)
         ih (.getHeight image)
-        xmax (inc (int (unchecked-divide (.width bounds) iw)))
-        ymax (inc (int (unchecked-divide (.height bounds) ih)))]
+        xmax (inc (int (/ (.width bounds) iw)))
+        ymax (inc (int (/ (.height bounds) ih)))]
 		(dotimes [y ymax]
 		   (dotimes [x xmax]
           (.drawImage g image (+ (.x bounds) (* x iw)) (+ (.y bounds) (* y ih)) nil)))))
