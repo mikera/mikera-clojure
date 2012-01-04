@@ -59,6 +59,7 @@
       y
       (max x z))))
 
+
 (defn reduce-indexed 
   "Reduce while adding an index as the second argument to the function"
   ([f coll]
