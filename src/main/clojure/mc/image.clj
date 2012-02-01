@@ -2,13 +2,14 @@
   (:import [mikera.image Generator ImageUtils Colours])
   (:import [mikera.util Rand Maths])
   (:import [java.util Arrays])
-  (:import [java.awt Image Graphics])
-  (:import [java.awt.image BufferedImage]))
+  (:import [java.awt Image Graphics Dimension])
+  (:import [java.awt.image BufferedImage])
+  (:import [javax.swing JPanel]))
 
 (defn rgb [r g b]
   (Colours/getRGBClamped (double r) (double g) (double b)))
 
-(defn argb [r g b]
+(defn argb [a r g b]
   (Colours/getARGBClamped (double a)  (double r) (double g) (double b)))
 
 (defn show 
@@ -18,6 +19,13 @@
   ([^String title ^Image img]
 	  "Show an image in a new or existing frame with a given title"
 	  (ImageUtils/display title img)))
+
+(defn image-panel [^Image img]
+  (let [panel (proxy [JPanel] []
+						    (paint [^Graphics g]
+						      (.drawImage g img 0 0)))]
+    (.setPreferredSize panel (Dimension. (.getWidth img) (.getHeight img)))
+    panel))
 
 (defn buffered-image [width height]
   "Create a default buffered image of the specified size in pxels"

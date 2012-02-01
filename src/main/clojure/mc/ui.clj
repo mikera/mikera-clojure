@@ -1,6 +1,6 @@
 (ns mc.ui
   (:import 
-    (javax.swing JComponent JFrame)
+    (javax.swing JComponent JFrame JButton SwingUtilities)
     (java.awt Color Component Insets Graphics Dimension Rectangle)
     (java.awt.image BufferedImage)
     (javax.swing.border AbstractBorder)))
@@ -34,13 +34,32 @@
 ; (def b (mc.ui/make-border (mc.resource/load-image "/images/bevel.png") 4))
 ; (. c setBorder b)
 
+(def frames (atom {}))
 
-(defn show-component [^Component c]
-    (let [^JFrame frame (JFrame. "Test Window")]
-      (doto frame
-        (.add c)
-        (.setSize (Dimension.  640 480)) 
-        (.setVisible true))))
+(defn new-frame [title]
+  (doto (JFrame. title)
+    (.setSize (Dimension.  480 360))
+    (.setVisible true)))
+
+(defn show-component 
+  ([^Component c]
+    (show-component c nil))
+  ([^Component c title]
+    (SwingUtilities/invokeLater
+      (fn []
+		    (if title
+			    (let [^JFrame frame (or (@frames title) (new-frame title))]
+				      (.removeAll (.getContentPane frame))
+		          (.add frame c)
+				      (.setVisible frame true)
+		          (swap! frames assoc title frame)
+			        frame)
+		      (let [^JFrame frame (new-frame "Test Window")]
+			      (doto frame
+			        (.add c)
+			        (.setSize (Dimension.  480 360)) 
+			        (.setVisible true))
+		        (swap! frames assoc title frame) ))))))
 
 ; (mc.ui/show-component c)
 
