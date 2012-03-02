@@ -8,6 +8,15 @@
 (defn debug [object]
   (mikera.util.Tools/debugBreak object))
 
+(defn array-concat [a b]
+  (let [la (count a)
+        lb (count b)
+        new-length (+ la lb)
+        target (double-array new-length)]
+    (System/arraycopy a 0 target 0 la)
+    (System/arraycopy b 0 target la lb)
+    target))
+
 (defn run-at-intervals [f interval-ms ms]
   "Sets off a thread with a function that will be run at intervals for the given time period"
   (future

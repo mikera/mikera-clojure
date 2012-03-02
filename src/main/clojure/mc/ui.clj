@@ -51,14 +51,13 @@
 			    (let [^JFrame frame (or (@frames title) (new-frame title))]
 				      (.removeAll (.getContentPane frame))
 		          (.add frame c)
-				      (.setVisible frame true)
+				      (.validate frame)
 		          (swap! frames assoc title frame)
 			        frame)
 		      (let [^JFrame frame (new-frame "Test Window")]
 			      (doto frame
 			        (.add c)
-			        (.setSize (Dimension.  480 360)) 
-			        (.setVisible true))
+			        (.setSize (Dimension.  480 360)))
 		        (swap! frames assoc title frame) ))))))
 
 ; (mc.ui/show-component c)
