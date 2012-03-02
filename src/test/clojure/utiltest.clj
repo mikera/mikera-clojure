@@ -8,6 +8,14 @@
     (is (= `(inc (inc 6)) (macroexpand `(applyn inc 2 6))))))
 
 
+(deftest test-array-concat 
+  (let [a1 (double-array [0.1 0.2])
+        a2 (double-array [0.3 0.4])
+        a (array-concat a1 a2)]
+    (is (= 0.3 (aget a 2)))
+    (is (= 0.2 (aget a 1)))
+    (is (= 4 (count a)))))
+
 (deftest test-for-loop
   (is (= "A" (for-loop [i 0 (< i 10) (inc i)] "A")))
   (is (= nil (for-loop [i 0 (< i 0)  (inc i)] "A")))
