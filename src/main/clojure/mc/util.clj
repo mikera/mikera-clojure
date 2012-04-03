@@ -198,6 +198,11 @@
           (recur f (rest items) fv v)
           (recur f (rest items) bestvalue best))))))
 
+(defn round 
+  ([x]
+    (Math/round x))
+  ([x decimal-places]
+    (throw (Error. "Not implemented yet!"))))
 
 ;; threadlocal macros from amalloy's flatland/useful library
 
