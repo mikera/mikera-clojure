@@ -8,6 +8,15 @@
 (defn debug [object]
   (mikera.util.Tools/debugBreak object))
 
+(defn array-concat [a b]
+  (let [la (count a)
+        lb (count b)
+        new-length (+ la lb)
+        target (double-array new-length)]
+    (System/arraycopy a 0 target 0 la)
+    (System/arraycopy b 0 target la lb)
+    target))
+
 (defn run-at-intervals [f interval-ms ms]
   "Sets off a thread with a function that will be run at intervals for the given time period"
   (future
@@ -58,6 +67,7 @@
     (if (<= y z) 
       y
       (max x z))))
+
 
 (defn reduce-indexed 
   "Reduce while adding an index as the second argument to the function"
@@ -188,43 +198,6 @@
           (recur f (rest items) fv v)
           (recur f (rest items) bestvalue best))))))
 
-(deftest test-middle
-  (is (= 2 (middle 1 2 3)))
-  (is (= 2 (middle 3 1 2)))
-  (is (= 2 (middle 2 3 1))))
-
-(deftest test-map-difference
-  (is (= {} (map-difference {:a 1 :b 2} {:a 1 :b 2})))
-  (is (= {:a 1} (map-difference {:a 1 :b 2} {:b 2})))
-  (is (= {:a 1 :b 2} (map-difference {:a 1 :b 2} {})))
-  (is (= {:a 1 :b nil} (map-difference {:a 1} {:b 2}))))
-
-(deftest test-list-not-nil
-  (is (= '() (list-not-nil nil nil)))
-  (is (= '() (list-not-nil nil)))
-  (is (= '(1 2 3 4 5) (list-not-nil nil 1 nil 2 3 4 5))))
-
-(deftest test-find-position
-  (is (= nil (find-position nil "fvfvf")))
-  (is (= 2 (find-position [1 2 3 4] 3)))
-  (is (= nil (find-position [1 2 3 4] 5))))
-
-
-(deftest test-list-contains
-  (is (list-contains? [1 2 3 4 5] 4))
-  (is (list-contains? '(1 2 3 4 5) 4))
-  (is (not (list-contains? '(1 2 3 4 5) 0)))
-  (is (not (list-contains? nil 0))))
-
-(deftest test-argmax
-  (let [f (fn [x] (* x x))]
-    (is (= 2 (argmax inc [2])))
-    (is (= -10 (argmax f [-10 4 6])))))
-
-(deftest test-valmax
-  (let [f (fn [x] (* x x))]
-    (is (= 3 (valmax inc [2])))
-    (is (= 7 (valmax inc [-10 4 6])))))
 
 ;; threadlocal macros from amalloy's flatland/useful library
 
@@ -254,3 +227,19 @@
    thread-local objects."
   [& body]
   `(thread-local* (fn [] ~@body)))
+
+
+
+(defmacro for-loop [[sym init check change :as params] & steps]
+  (cond
+    (not (vector? params)) 
+      (throw (Error. "Binding form must be a vector for for-loop"))
+    (not= 4 (count params)) 
+      (throw (Error. "Binding form must have exactly 4 arguments in for-loop"))
+    :default
+      `(loop [~sym ~init value# nil]
+         (if ~check
+           (let [new-value# (do ~@steps)]
+             (recur ~change new-value#))
+           value#))))
+
