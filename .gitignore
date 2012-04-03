@@ -5,5 +5,4 @@
 /classes
 
 .project
-.classpath
-/.settings
+.settings
