@@ -233,7 +233,16 @@
   [& body]
   `(thread-local* (fn [] ~@body)))
 
-
+(defn split-equally [num coll] 
+  "Split a collection into a vector of (as close as possible) equally sized parts"
+  (loop [num num 
+         parts []
+         coll coll
+         c (count coll)]
+    (if (<= num 0)
+      parts
+      (let [t (quot (+ c num -1) num)]
+        (recur (dec num) (conj parts (take t coll)) (drop t coll) (- c t)))))) 
 
 (defmacro for-loop [[sym init check change :as params] & steps]
   (cond
@@ -248,3 +257,7 @@
              (recur ~change new-value#))
            value#))))
 
+(comment
+  (for-loop [i 0 (< i 10) (inc i)]
+     (println i))
+  )
