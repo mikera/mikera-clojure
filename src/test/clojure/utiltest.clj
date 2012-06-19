@@ -59,6 +59,14 @@
     (is (= 2 (argmax inc [2])))
     (is (= -10 (argmax f [-10 4 6])))))
 
+(deftest test-xor
+  (is (= nil (xor)))
+  (is (= 10 (xor 10)))
+  (is (= nil (xor nil)))
+  (is (= 2 (xor nil 2)))
+  (is (= 2 (xor nil nil 2 nil nil)))
+  (is (= 1 (xor 1 2 3))))
+
 (deftest test-valmax
   (let [f (fn [x] (* x x))]
     (is (= 3 (valmax inc [2])))

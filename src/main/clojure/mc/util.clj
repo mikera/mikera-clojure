@@ -244,6 +244,18 @@
       (let [t (quot (+ c num -1) num)]
         (recur (dec num) (conj parts (take t coll)) (drop t coll) (- c t)))))) 
 
+(defmacro xor 
+  ([] 
+    nil)
+  ([a]
+    a)
+  ([a & more]
+    `(let [a# ~a
+           b# (xor ~@more)]
+       (if a#
+         (if b# nil a#)
+         b#))))
+
 (defmacro for-loop [[sym init check change :as params] & steps]
   (cond
     (not (vector? params)) 
