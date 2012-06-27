@@ -269,7 +269,18 @@
              (recur ~change new-value#))
            value#))))
 
+(defmacro do-indexed [[val-sym vals index-sym initial] & code]
+  `(if-let [vals# (seq ~vals)]
+     (loop [vals# vals#
+            i# ~initial]
+       (let [~val-sym (first vals#)
+             ~index-sym i#]
+         ~code)
+       (if-let [next# (next vals#)] 
+         (recur next# (inc i#))
+         nil))))
+
 (comment
   (for-loop [i 0 (< i 10) (inc i)]
      (println i))
-  )
+)
