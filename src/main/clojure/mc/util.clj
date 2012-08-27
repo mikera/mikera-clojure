@@ -245,10 +245,8 @@
         (recur (dec num) (conj parts (take t coll)) (drop t coll) (- c t)))))) 
 
 (defmacro xor 
-  ([] 
-    nil)
-  ([a]
-    a)
+  ([] nil)
+  ([a] a)
   ([a & more]
     `(let [a# ~a
            b# (xor ~@more)]
