@@ -200,7 +200,7 @@
 
 (defn round 
   ([x]
-    (Math/round x))
+    (Math/round (double x)))
   ([x decimal-places]
     (throw (Error. "Not implemented yet!"))))
 
