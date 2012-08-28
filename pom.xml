@@ -78,6 +78,10 @@
 			<testResource>
 				<directory>src/test/clojure</directory>
 			</testResource>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+
 		</testResources>
 	</build>
 
@@ -93,6 +97,11 @@
 			<version>3.7.3.1</version>
 			<type>jar</type>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.clojure</groupId>
+			<artifactId>clojure</artifactId>
+			<version>1.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>net.mikera</groupId>
