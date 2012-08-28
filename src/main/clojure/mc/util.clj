@@ -5,6 +5,9 @@
   (:require [clojure.set])
   (:use [clojure.test]))
 
+(set! *warn-on-reflection* true)
+(set! *unchecked-math* true)
+
 (defn debug [object]
   (mikera.util.Tools/debugBreak object))
 
@@ -235,7 +238,7 @@
 
 (defn split-equally [num coll] 
   "Split a collection into a vector of (as close as possible) equally sized parts"
-  (loop [num num 
+  (loop [num (long num) 
          parts []
          coll coll
          c (count coll)]
