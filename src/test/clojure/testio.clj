@@ -2,6 +2,6 @@
   (:use mc.resource)
   (:use clojure.test))
 
-(deftest test-arithmetic
-  (testing "Basic arithmetic"
+(deftest test-io
+  (testing "Resource IO"
     (is (mc.resource/resource "euler/names.txt"))))
