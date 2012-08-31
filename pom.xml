@@ -3,8 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.mikera</groupId>
 	<artifactId>mikera-clojure</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
-	<name>Mike's Clojure Library</name>
+	<version>1.0.1</version>
+	<name>Mike's general purpose Clojure library</name>
+	
+	<url>https://github.com/mikera/mikera-clojure.git</url>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License (LGPL)</name>
+			<url>http://www.gnu.org/licenses/lgpl.html</url>
+		</license>
+	</licenses>
 
 	<developers>
 		<developer>
