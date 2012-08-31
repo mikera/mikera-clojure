@@ -1,12 +1,16 @@
 (ns utiltest
   (:use clojure.test)
-  (:use mc.util))
+  (:use mc.util)
+  (:import [mikera.clojure ClojureError]))
 
 (deftest test-applying
   (testing "applyn"
     (is (= 810 (applyn inc 10 800)))
     (is (= `(inc (inc 6)) (macroexpand `(applyn inc 2 6))))))
 
+(deftest test-error
+  (testing "error"
+    (is (thrown? mikera.clojure.ClojureError (error "foo"))) ))
 
 (deftest test-array-concat 
   (let [a1 (double-array [0.1 0.2])
