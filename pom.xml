@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.mikera</groupId>
 	<artifactId>mikera-clojure</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<name>Mike's general purpose Clojure library</name>
 	
 	<url>https://github.com/mikera/mikera-clojure.git</url>
