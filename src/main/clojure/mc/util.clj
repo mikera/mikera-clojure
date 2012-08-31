@@ -1,12 +1,18 @@
 (ns mc.util
   (:import mikera.util.Rand)
   (:import [mikera.util Tools])
+  (:import [mikera.clojure ClojureError])
   (:import [clojure.lang IDeref])
   (:require [clojure.set])
   (:use [clojure.test]))
 
 (set! *warn-on-reflection* true)
 (set! *unchecked-math* true)
+
+(defmacro error
+  "Throws a clisk error with the provided message(s)"
+  ([& vals]
+    `(throw (mikera.clojure.ClojureError. (str ~@vals)))))
 
 (defn debug [object]
   (mikera.util.Tools/debugBreak object))
