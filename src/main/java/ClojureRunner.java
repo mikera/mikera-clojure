@@ -1,3 +1,7 @@
+import java.io.IOException;
+
+import mikera.clojure.ClojureError;
+
 import clojure.lang.*;
 
 public class ClojureRunner {
@@ -6,7 +10,12 @@ public class ClojureRunner {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// clojure.lang.RT
+		try {
+			RT.loadResourceScript("mc/util.clj");
+			System.out.println(clojure.lang.RT.var("mc.util","middle").invoke(1,2,3));
+		} catch (IOException e) {
+			throw new ClojureError(e);
+		}
 	}
 
 }
