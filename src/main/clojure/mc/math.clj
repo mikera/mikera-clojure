@@ -1,4 +1,5 @@
 (ns mc.math
+  (:use mc.util)
   (:import [java.lang.Math]))
 
 
@@ -15,12 +16,18 @@
 	      floats)
       sort)))
 
-(defn gcd [a b] (let [m (mod b a)] (if (pos? m) (gcd m a) a)))
+(defn gcd 
+  "Returns the greatest common divisor of two numbers" 
+  ([a b] 
+    (let [m (mod b a)] 
+      (if (pos? m) (gcd m a) a))))
 
-(defn integer-progression [start end count]
-  (let [increment (/ (double (- end start)) (dec count))]
-    (for [i (range count)]
-      (java.lang.Math/round (double (+ start (* increment i)))))))
+(defn integer-progression 
+  "Create a sequence of (possibly not unique) integers approximating an arithmetic progression from start to end that is exactly count long"
+  ([start end ^long count]
+    (let [increment (/ (- (double end) (double start)) (dec count))]
+      (for [i (range count)]
+        (java.lang.Math/round (double (+ start (* increment (double i)))))))))
 
 ;; (histogram 100 (fn [] (mikera.util.Rand/u)) 0.1)
 

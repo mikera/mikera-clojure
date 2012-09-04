@@ -1,7 +1,8 @@
-(ns testio
-  (:use mc.resource)
+(ns testmath
+  (:use mc.math)
   (:use clojure.test))
 
-(deftest test-io
-  (testing "Resource IO"
-    (is (mc.resource/resource "euler/names.txt"))))
+(deftest test-integer-progression
+  (testing "end values"
+    (is (= 1 (first (integer-progression 1 10 5))))
+    (is (= 10 (last (integer-progression 1 10 5))))))
