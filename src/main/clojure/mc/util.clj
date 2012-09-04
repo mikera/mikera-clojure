@@ -50,11 +50,12 @@
 
 (defn find-first [pred coll]
   "Searches a collection and returns the first item for which pred is true, nil if not found"
-  (if (empty? coll) nil
-    (let [v (first coll)]
-      (if (pred v)
-        v
-        (recur pred (rest coll))))))
+  (loop [s (seq coll)] 
+    (when s  
+      (let [v (first s)]
+        (if (pred v)
+          v
+          (recur (next s)))))))
 
 (defn find-position 
   "Searches a collection and returns the index of the item's position"

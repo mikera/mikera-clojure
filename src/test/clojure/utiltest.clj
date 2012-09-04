@@ -51,6 +51,11 @@
   (is (= 2 (find-position [1 2 3 4] 3)))
   (is (= nil (find-position [1 2 3 4] 5))))
 
+(deftest test-find-first
+  (is (= 2 (find-first even? [1 2 3])))
+  (is (= nil (find-first odd? [2 4 6 8])))
+  (is (= 1 (find-first (constantly true) [1 2 3 4])))
+  (is (= nil (find-first (constantly true) []))))
 
 (deftest test-list-contains
   (is (list-contains? [1 2 3 4 5] 4))
