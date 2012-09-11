@@ -5,3 +5,10 @@
   (.newInstance
     (.getConstructor klass (into-array java.lang.Class (map type args)))
     (object-array args)))
+
+
+ (defn build-constructor [klass & types]
+    "Return a construtor function for the given class"
+    (let [constructor (.getConstructor klass (into-array java.lang.Class types))]
+      (fn [& args]
+        (.newInstance constructor args))))
