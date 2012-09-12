@@ -1,6 +1,5 @@
 (ns mc.evolve
-	(:use [clojure.contrib.macro-utils])
-) 
+	(:use [clojure.tools.macro])) 
 
 
 

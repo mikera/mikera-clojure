@@ -1,5 +1,5 @@
 (ns mc.evolve.net
-  (:use [clojure.contrib.macro-utils]))
+  (:use [clojure.tools.macro]))
 
 (set! *warn-on-reflection* true)
 
