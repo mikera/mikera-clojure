@@ -1,6 +1,6 @@
+package mikera.clojure;
 import java.io.IOException;
 
-import mikera.clojure.ClojureError;
 
 import clojure.lang.*;
 
