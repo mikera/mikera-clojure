@@ -1,23 +1,24 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>mikera-clojure</artifactId>
 	<version>1.0.3-SNAPSHOT</version>
 	<name>Mike's general purpose Clojure library</name>
 	<description>General purpose utilities for Clojure licensed under the GPL by Mike Anderson</description>
-	
+
 	<parent>
 		<groupId>net.mikera</groupId>
 		<artifactId>clojure-pom</artifactId>
 		<version>0.0.1</version>
-	</parent>	
-	
+	</parent>
+
 	<url>https://github.com/mikera/${project.artifactId}.git</url>
 
 	<scm>
 		<connection>scm:git:git@github.com:mikera/${project.artifactId}.git</connection>
 		<url>scm:git:git@github.com:mikera/${project.artifactId}.git</url>
 		<developerConnection>scm:git:git@github.com:mikera/${project.artifactId}.git</developerConnection>
-  	</scm>
+	</scm>
 
 	<licenses>
 		<license>
@@ -25,6 +26,13 @@
 			<url>http://www.gnu.org/licenses/lgpl.html</url>
 		</license>
 	</licenses>
+
+	<repositories>
+		<repository>
+			<id>clojars.org</id>
+			<url>http://clojars.org/repo</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -59,5 +67,5 @@
 			<version>1.4.0</version>
 		</dependency>
 	</dependencies>
-	
+
 </project>
