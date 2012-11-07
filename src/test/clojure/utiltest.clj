@@ -1,12 +1,16 @@
 (ns utiltest
   (:use clojure.test)
-  (:use mc.util))
+  (:use mc.util)
+  (:import [mikera.clojure ClojureError]))
 
 (deftest test-applying
   (testing "applyn"
     (is (= 810 (applyn inc 10 800)))
     (is (= `(inc (inc 6)) (macroexpand `(applyn inc 2 6))))))
 
+(deftest test-error
+  (testing "error"
+    (is (thrown? mikera.clojure.ClojureError (error "foo"))) ))
 
 (deftest test-array-concat 
   (let [a1 (double-array [0.1 0.2])
@@ -47,6 +51,11 @@
   (is (= 2 (find-position [1 2 3 4] 3)))
   (is (= nil (find-position [1 2 3 4] 5))))
 
+(deftest test-find-first
+  (is (= 2 (find-first even? [1 2 3])))
+  (is (= nil (find-first odd? [2 4 6 8])))
+  (is (= 1 (find-first (constantly true) [1 2 3 4])))
+  (is (= nil (find-first (constantly true) []))))
 
 (deftest test-list-contains
   (is (list-contains? [1 2 3 4 5] 4))

@@ -37,7 +37,7 @@
 (def frames (atom {}))
 
 (defn new-frame [title]
-  (doto (JFrame. title)
+  (doto (JFrame. (str title))
     (.setSize (Dimension.  480 360))
     (.setVisible true)))
 
