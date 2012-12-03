@@ -6,10 +6,10 @@
   (:import [java.awt.image BufferedImage])
   (:import [javax.swing JPanel]))
 
-(defn rgb [r g b]
+(defn rgb ^long [r g b]
   (Colours/getRGBClamped (double r) (double g) (double b)))
 
-(defn argb [a r g b]
+(defn argb ^long [a r g b]
   (Colours/getARGBClamped (double a)  (double r) (double g) (double b)))
 
 (defn show 
@@ -27,18 +27,20 @@
     (.setPreferredSize panel (Dimension. (.getWidth img) (.getHeight img)))
     panel))
 
-(defn buffered-image [width height]
+(defn buffered-image 
   "Create a default buffered image of the specified size in pxels"
-  (Generator/newImage (int width) (int height)))
+  (^BufferedImage [width height]
+    (Generator/newImage (int width) (int height))))
 
-(defn create-image [f width height] 
-  (let [bi ^BufferedImage (buffered-image width height)
-        xfactor (double (/ 1.0 width))
-        yfactor (double (/ 1.0 height))]
-	  (dotimes [y height]
-	    (dotimes[x width]
-	      (.setRGB bi x y (f (* x xfactor) (* y yfactor)))))
-    bi))
+(defn create-image 
+  (^BufferedImage [f width height] 
+    (let [bi ^BufferedImage (buffered-image width height)
+          xfactor (double (/ 1.0 width))
+          yfactor (double (/ 1.0 height))]
+      (dotimes [y height]
+        (dotimes[x width]
+          (.setRGB bi x y (f (* x xfactor) (* y yfactor)))))
+      bi)))
 
 (defmacro image-function-2D [form]
   `(fn name#
