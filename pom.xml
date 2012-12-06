@@ -49,7 +49,7 @@
 		<dependency>
 			<groupId>org.clojure</groupId>
 			<artifactId>math.numeric-tower</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.clojure</groupId>
@@ -59,7 +59,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.10</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
