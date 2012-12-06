@@ -1,4 +1,4 @@
-(ns mc.evolve
+(ns test.evolve.evolve
 	(:use [clojure.tools.macro])) 
 
 

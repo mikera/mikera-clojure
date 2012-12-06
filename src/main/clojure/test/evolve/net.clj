@@ -1,4 +1,4 @@
-(ns mc.evolve.net
+(ns test.evolve.net
   (:use [clojure.tools.macro]))
 
 (set! *warn-on-reflection* true)
