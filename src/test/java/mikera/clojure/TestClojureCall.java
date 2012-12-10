@@ -1,3 +1,4 @@
+package mikera.clojure;
 import org.junit.Test;
 
 public class TestClojureCall {
