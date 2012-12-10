@@ -293,7 +293,7 @@
 	           value#)))))
 
 (defmacro do-indexed 
-  "loops over a set of values, dinding index-sym to the 0-based index of each value"
+  "loops over a set of values, binding index-sym to the 0-based index of each value"
   ([[val-sym values index-sym initial] & code]
   `(if-let [vals# (seq ~values)]
      (loop [vals# vals#
