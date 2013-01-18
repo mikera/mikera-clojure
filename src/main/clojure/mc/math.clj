@@ -1,6 +1,5 @@
 (ns mc.math
-  (:use mc.util)
-  (:import [java.lang.Math]))
+  (:use mc.util))
 
 (defn histogram [n some-function gap]
   (let [floats (sort (take n (repeatedly some-function)))]
