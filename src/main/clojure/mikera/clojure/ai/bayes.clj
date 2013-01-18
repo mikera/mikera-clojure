@@ -1,4 +1,4 @@
-(ns mikera.clojure.bayes
+(ns mikera.clojure.ai.bayes
   "A simple naive bayes classifier in Clojure")
 
 (def empty-model "A model with no data"

@@ -1,5 +1,5 @@
 (ns mc.image
-  (:import [mikera.image Generator ImageUtils Colours])
+  (:import [mikera.image.generation Generator ImageUtils Colours])
   (:import [mikera.util Rand Maths])
   (:import [java.util Arrays])
   (:import [java.awt Image Graphics Dimension])
